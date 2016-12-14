@@ -49,6 +49,7 @@ export default class Query extends Component {
     tables: PropTypes.array,
     columnsByTable: PropTypes.object,
     triggersByTable: PropTypes.object,
+    indexesByTable: PropTypes.object,
     views: PropTypes.array,
     functions: PropTypes.array,
     procedures: PropTypes.array,
@@ -89,6 +90,8 @@ export default class Query extends Component {
           !== Object.keys(this.props.columnsByTable || []).length)
       || (Object.keys(nextProps.triggersByTable || {}).length
           !== Object.keys(this.props.triggersByTable || []).length)
+      || (Object.keys(nextProps.indexesByTable || {}).length
+          !== Object.keys(this.props.indexesByTable || []).length)
     );
 
     if (!isMetadataChanged) {
@@ -171,6 +174,7 @@ export default class Query extends Component {
       tables,
       columnsByTable,
       triggersByTable,
+      indexesByTable,
       views,
       functions,
       procedures,
@@ -191,6 +195,7 @@ export default class Query extends Component {
       ...mapCompletionTypes(tables, 'table'),
       ...mapCompletionTypes(columnsByTable, 'column'),
       ...mapCompletionTypes(triggersByTable, 'trigger'),
+      ...mapCompletionTypes(indexesByTable, 'index'),
       ...mapCompletionTypes(views, 'view'),
       ...mapCompletionTypes(functions, 'function'),
       ...mapCompletionTypes(procedures, 'procedure'),

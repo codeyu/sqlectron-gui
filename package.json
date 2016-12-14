@@ -8,13 +8,13 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint",
     "clean": "rimraf dist",
-    "clean:mac": "rimraf dist/Sqlectron-darwin-*",
+    "clean:osx": "rimraf dist/Sqlectron-darwin-*",
     "clean:win": "rimraf dist/win* dist/Sqlectron-win*",
     "clean:linux": "rimraf dist/Sqlectron-linux-* dist/*.deb",
     "compile": "rimraf app/out && npm run compile:browser && npm run compile:renderer",
     "compile:browser": "cross-env NODE_ENV=production babel ./src/browser -d app/out/browser",
     "compile:renderer": "cross-env NODE_ENV=production webpack --progress --display-error-details --config ./webpack.prod.config",
-    "build:mac": "npm run clean:mac && build --mac",
+    "build:osx": "npm run clean:osx && build --osx",
     "build:linux": "npm run clean:linux && build --linux",
     "build:win": "npm run clean:win && build --windows",
     "dist": "npm run compile && build",
@@ -23,8 +23,10 @@
   },
   "build": {
     "appId": "org.sqlectron.gui",
-    "mac.category": "public.app-category.developer-tools",
     "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "dmg": {
       "contents": [
         {
           "x": 438,
